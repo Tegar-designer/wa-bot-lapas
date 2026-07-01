@@ -76,6 +76,8 @@ async function startBot() {
     printQRInTerminal: false,
     markOnlineOnConnect: false,
     syncFullHistory: false,
+     keepAliveIntervalMs: 10000, // kirim ping tiap 10 detik, bukan default yang lebih jarang
+  connectTimeoutMs: 60000,
   });
 
   sock.ev.on('creds.update', saveCreds);
