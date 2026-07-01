@@ -1,0 +1,16 @@
+{
+  "name": "bot-kunjungan-lapas",
+  "version": "1.0.0",
+  "description": "Bot WhatsApp Layanan Kunjungan Lapas Kelas IIA Kotabumi menggunakan Baileys",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^7.0.0-rc13",
+    "pino": "^9.4.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
