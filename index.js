@@ -90,12 +90,7 @@ console.log('Registered:', state.creds.registered);
     const { connection, lastDisconnect } = update;
 
     // Minta pairing code saat pertama kali, lalu auto-refresh setiap 55 detik
-    if (
-  connection === 'connecting' &&
-  !state.creds.registered &&
-  nomorWA &&
-  !sudahMintaCode
-) {
+    if (!state.creds.registered && nomorWA && !sudahMintaCode) {
       sudahMintaCode = true;
       // Tunggu sebentar agar handshake selesai
       await new Promise((r) => setTimeout(r, 10000));
@@ -119,11 +114,8 @@ console.log('Registered:', state.creds.registered);
         `Koneksi terputus. Status: ${statusCode} (${DisconnectReason[statusCode] || 'unknown'}). Reconnect: ${shouldReconnect}`
       );
       if (shouldReconnect) {
-  console.log('🔄 Mencoba reconnect dalam 5 detik...');
-  setTimeout(() => {
-    startBot();
-  }, 5000);
-} else {
+        startBot();
+      } else {
         console.log(
           '❌ Sesi logout / kredensial tidak valid. Hapus folder "auth_info" lalu jalankan ulang.'
         );
