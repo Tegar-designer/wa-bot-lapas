@@ -22,30 +22,21 @@ function getSesi(jid) {
   return sesi.get(jid);
 }
 
-// Baca input dari terminal
-function tanyaInput(pertanyaan) {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  return new Promise((resolve) => {
-    rl.question(pertanyaan, (jawaban) => {
-      rl.close();
-      resolve(jawaban.trim());
-    });
-  });
-}
 
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState('auth_info');
   const { version } = await fetchLatestBaileysVersion();
 
   // Tanya nomor dulu sebelum koneksi, hanya jika belum terdaftar
-  let nomorWA = '';
-  if (!state.creds.registered) {
-    nomorWA = await tanyaInput(
-      '\n📱 Masukkan nomor WhatsApp Anda (format internasional, tanpa + dan spasi)\n   Contoh: 6281234567890\n➜ '
-    );
-    nomorWA = nomorWA.replace(/[^0-9]/g, '');
-    console.log(`\n⏳ Menghubungkan ke WhatsApp untuk nomor: ${nomorWA} ...\n`);
-  }
+let nomorWA = process.env.WA_NUMBER || '6285760608695';
+
+if (!state.creds.registered) {
+  nomorWA = nomorWA.replace(/[^0-9]/g, '');
+
+  console.log(
+    `\n⏳ Menghubungkan ke WhatsApp untuk nomor: ${nomorWA} ...\n`
+  );
+}
 
  const sock = makeWASocket({
   version,
