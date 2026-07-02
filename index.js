@@ -61,7 +61,7 @@ async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState('auth_info');
   const { version } = await fetchLatestBaileysVersion();
 
-  let nomorWA = process.env.WA_NUMBER || '6282278436325';
+  let nomorWA = process.env.WA_NUMBER || '6285760608695';
 
   if (!state.creds.registered) {
     nomorWA = nomorWA.replace(/[^0-9]/g, '');
